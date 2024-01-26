@@ -1,0 +1,76 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.buttonsWidth{
+  width: 25%;
+}
+
+.form-control.is-valid, .was-validated .form-control:valid
+{
+  border:1px solid #ced4da;
+  background-image: none;
+}
+
+.form-check-input.is-valid, .was-validated .form-check-input:valid
+{border:1px solid #ced4da;
+  background-image: none;
+}
+.form-check-input.is-valid~.form-check-label, .was-validated .form-check-input:valid~.form-check-label
+{
+  color: #212529;
+}
+.form-select.is-valid:not([multiple]):not([size]), 
+.form-select.is-valid:not([multiple])[size="1"], 
+.was-validated .form-select:valid:not([multiple]):not([size]), 
+.was-validated .form-select:valid:not([multiple])[size="1"]
+{
+  border:1px solid #ced4da;
+  background-image: none;
+}
+
+.darkBlueColor{
+  color: darkblue;
+}
+
+
+.lgnForm
+{
+width: 33%;
+margin-left: 33%;
+margin-top: 15%;
+}
