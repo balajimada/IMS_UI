@@ -22,17 +22,12 @@ function Login() {
 
     const onLogin = () => {
         if (document.getElementById("form1").checkValidity() === true) {
-            //alert("success") 
             setValidated(false);
             navigate("/Dashboard")
         }
         else {
-            //alert("fail")
             setValidated(true);
-
         }
-
-
     }
 
     return (

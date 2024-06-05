@@ -42,7 +42,7 @@ const DashboardLayoutRoute = ({children }) => {
        </div>
     <main>
     
-   </main>
+   </main>   
 </div> 
   )  
 };  

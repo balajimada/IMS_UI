@@ -32,45 +32,49 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
-.buttonsWidth{
+
+.buttonsWidth {
   width: 25%;
 }
 
-.form-control.is-valid, .was-validated .form-control:valid
-{
-  border:1px solid #ced4da;
+.form-control.is-valid,
+.was-validated .form-control:valid {
+  border: 1px solid #ced4da;
   background-image: none;
 }
 
-.form-check-input.is-valid, .was-validated .form-check-input:valid
-{border:1px solid #ced4da;
+.form-check-input.is-valid,
+.was-validated .form-check-input:valid {
+  border: 1px solid #ced4da;
   background-image: none;
 }
-.form-check-input.is-valid~.form-check-label, .was-validated .form-check-input:valid~.form-check-label
-{
+
+.form-check-input.is-valid~.form-check-label,
+.was-validated .form-check-input:valid~.form-check-label {
   color: #212529;
 }
-.form-select.is-valid:not([multiple]):not([size]), 
-.form-select.is-valid:not([multiple])[size="1"], 
-.was-validated .form-select:valid:not([multiple]):not([size]), 
-.was-validated .form-select:valid:not([multiple])[size="1"]
-{
-  border:1px solid #ced4da;
+
+.form-select.is-valid:not([multiple]):not([size]),
+.form-select.is-valid:not([multiple])[size="1"],
+.was-validated .form-select:valid:not([multiple]):not([size]),
+.was-validated .form-select:valid:not([multiple])[size="1"] {
+  border: 1px solid #ced4da;
   background-image: none;
 }
 
-.darkBlueColor{
+.darkBlueColor {
   color: darkblue;
 }
 
 
-.lgnForm
-{
-width: 33%;
-margin-left: 33%;
-margin-top: 15%;
+.lgnForm {
+  width: 33%;
+  margin-left: 33%;
+  margin-top: 15%;
 }
+
