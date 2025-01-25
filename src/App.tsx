@@ -1,9 +1,9 @@
-import logo from './logo.svg';
+ 
 import './App.css';
 import MainLayout from './components/layout/DashboardLayoutRoute';
 import Sidebar from './components/pages/Sidebar';
 import Dashboard from './components/pages/Dashboard';
-import { BrowserRouter, Routes, Route, Navigate, BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, BrowserRouter as Router } from "react-router-dom";
 import NoPage from './components/pages/NoPage';
 import Login from './components/pages/Login';
 import React, { lazy, Suspense } from 'react';
@@ -30,7 +30,7 @@ function App() {
             <Route path="/" element={<Login />} ></Route>
             <Route path="/Dashboard" element={<DashboardLayoutRoute><Dashboard></Dashboard> </DashboardLayoutRoute>}></Route>
             <Route path="/Products" element={<DashboardLayoutRoute><Products></Products> </DashboardLayoutRoute>}></Route>
-            <Route path="/AddEditProduct" element={<DashboardLayoutRoute><AddEditProduct></AddEditProduct> </DashboardLayoutRoute>}></Route>
+            {/* <Route path="/AddEditProduct" element={<DashboardLayoutRoute><AddEditProduct ></AddEditProduct> </DashboardLayoutRoute>}></Route> */}
             <Route path="/Categories" element={<DashboardLayoutRoute><Categories></Categories> </DashboardLayoutRoute>}></Route>
             <Route path="/Billing" element={<DashboardLayoutRoute><Billing></Billing> </DashboardLayoutRoute>}></Route>
             {/* <Route path="/AddEditCategory" element={<DashboardLayoutRoute><AddEditCategory></AddEditCategory> </DashboardLayoutRoute>}></Route> */}
@@ -39,8 +39,8 @@ function App() {
         </Router>
 
       </Suspense>
-      <footer class="container-fluid footer fixed-botton fixed-bottom">
-        <p class="text-center small">©2023-2024 Inventory Management System</p>
+      <footer className="container-fluid footer fixed-botton fixed-bottom">
+        <p className="text-center small">©2023-2024 Inventory Management System</p>
       </footer>
     </>
   );

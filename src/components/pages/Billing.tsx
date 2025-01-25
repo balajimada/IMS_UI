@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Nav, NavDropdown, MenuItem } from 'react-bootstrap';
+import React, { FC } from 'react';
+import { Nav, NavDropdown } from 'react-bootstrap';
 
-function Billing() {
-
-    const UserMenu = (
+const Billing: FC = () => {
+    const UserMenu: JSX.Element = (
         <img
             src={"../../Images/Products/TensionGear.jpg"}
             alt="UserName profile image"
-            roundedCircle
+            className="rounded-circle"
             style={{ width: '40px' }}
         />
-        );
+    );
 
     return (
         <>
@@ -24,7 +23,6 @@ function Billing() {
                                 width={250}
                                 height={250}
                             />
-
                             {"Test"}
                         </div>
                     }
@@ -32,11 +30,7 @@ function Billing() {
                 </NavDropdown>
             </Nav>
 
-
-           
-
             <NavDropdown id="nav-dropdown-dark-example" title={UserMenu}>
-
             </NavDropdown>
         </>
     );

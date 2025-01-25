@@ -1,29 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { AgGridReact } from 'ag-grid-react'; // React Grid Logic
-import "ag-grid-community/styles/ag-grid.css"; // Core CSS
-import "ag-grid-community/styles/ag-theme-quartz.css"; // Theme  
+import React, { useEffect, useState, FC } from "react";
+import { AgGridReact } from 'ag-grid-react';
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-quartz.css";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import AddEditCategory from "./AddEditCategory";
 
-function Categories() {
-    const [categoryList, setCategoryList] = useState([]);
-    const [isOpenModel, setOpenModel] = useState(false);
-    const [categoryData, setCategoryData] = useState({});
-    const [header, setHeader] = useState('');
+interface Category {
+    categoryID: number;
+    categoryCode: string;
+    categoryName: string;
+    gst: number;
+}
 
-    function getApiRouteUrl() {
+const Categories: FC = () => {
+    const [categoryList, setCategoryList] = useState<Category[]>([]);
+    const [isOpenModel, setOpenModel] = useState<boolean>(false);
+    const [categoryData, setCategoryData] = useState<Category | undefined>(undefined);
+    const [header, setHeader] = useState<string>('');
+
+    function getApiRouteUrl(): string {
         return "http://localhost:5000/";
     }
 
-    const buttonClickedHandler = () => {
-
+    const buttonClickedHandler = (): void => {
         setHeader("Add New Category");
-        setCategoryData(undefined)
-        setOpenModel((isOpenModel) => isOpenModel = !isOpenModel)
+        setCategoryData(undefined);
+        setOpenModel((prevIsOpenModel) => !prevIsOpenModel);
     }
 
-    function loadCategories() {
+    function loadCategories(): void {
         axios.post(getApiRouteUrl() + "api/Product/GetProductCategories").then(res => {
             if (res?.data) {
                 console.log(res.data);
@@ -32,17 +38,16 @@ function Categories() {
         });
     }
 
-    const editCategory = (params) => {
+    const editCategory = (params: any): void => {
         console.log(params);
-        setOpenModel(true)
+        setOpenModel(true);
         setCategoryData(params.data);
         setHeader("Edit Category");
     }
 
-
-    const deleteCategory = (params) => {
+    const deleteCategory = (params: any): void => {
         if (window.confirm('Are you sure you want to delete this Category?')) {
-            axios.post(getApiRouteUrl()+ "api/Product/DeleteCategory", params.data).then(res => {
+            axios.post(getApiRouteUrl() + "api/Product/DeleteCategory", params.data).then(res => {
                 if (res?.data) {
                     console.log(res.data);
                     loadCategories();
@@ -51,31 +56,28 @@ function Categories() {
         }
     }
 
-    //page or component Load event
     useEffect(() => {
         loadCategories();
     }, []);
 
-    // Column Definitions: Defines & controls grid columns.
-    const [colDefs, setColDefs] = useState([
+    const [colDefs, setColDefs] = useState<any[]>([
         { field: "categoryID", flex: 1 },
         { field: "categoryCode", flex: 1 },
         { field: "categoryName", flex: 2 },
         {
             headerName: "GST (%)",
-            valueGetter: p => {
-                return p.data.gst.toFixed(2);
-            }, flex: 1
+            valueGetter: (p: any) => p.data.gst.toFixed(2),
+            flex: 1
         },
         {
             headerName: "Action",
             minWidth: 150,
-            cellRenderer: function (params) {
-                return <div>
-                    <Button variant="primary" onClick={(event) => editCategory(params)}  >Edit</Button>
-                    <Button variant="secondary" onClick={(event) => deleteCategory(params)} style={{ marginLeft: '10px' }}  >Delete</Button>
+            cellRenderer: (params: any) => (
+                <div>
+                    <Button variant="primary" onClick={() => editCategory(params)}>Edit</Button>
+                    <Button variant="secondary" onClick={() => deleteCategory(params)} style={{ marginLeft: '10px' }}>Delete</Button>
                 </div>
-            },
+            ),
             editable: false,
             colId: "action"
         }
