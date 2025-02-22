@@ -10,7 +10,7 @@ interface Category {
     categoryID: number;
     categoryCode: string;
     categoryName: string;
-    gst: number;
+    gst: string;
 }
 
 const Categories: FC = () => {

@@ -26,9 +26,10 @@ interface ProductData {
 interface AddEditProductProps {
   show: boolean;
   header?: string;
-  productData?: ProductData | null;
+  productData?: ProductData | null | undefined;
   refreshProducts: () => void;
   buttonClicked: () => void;
+  setOpenModel: (open: boolean) => void;
 }
 
 const AddEditProduct: FC<AddEditProductProps|null> = (props) => {
@@ -85,7 +86,7 @@ const AddEditProduct: FC<AddEditProductProps|null> = (props) => {
      } else {
        resetForm();
      }
-   }, [props.show === true]);
+   }, [props?.show === true]);
 
    function resetForm() {
       setCategoryCode("");
@@ -145,13 +146,14 @@ const AddEditProduct: FC<AddEditProductProps|null> = (props) => {
 
 	    e.preventDefault();
 
-	    if(document.getElementById("frmProdcut")?.checkValidity() === true){
+	    const form = document.getElementById("frmProdcut") as HTMLFormElement;
+    if (form?.checkValidity() === true){
 	        // Set validated state to false
 	        // Create form data object
 	        // Make API call here
 
-	        props.refreshProducts();
-	        props.buttonClicked();
+	        props?.refreshProducts();
+	        props?.buttonClicked();
 	    }else{
 	        // Mark the form as validated
 	        // Show validation errors

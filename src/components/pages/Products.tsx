@@ -7,19 +7,29 @@ import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import AddEditProduct from "./AddEditProduct";
 import ImageRenderer from "./ImageRenderer";
+import { ColDef as AgColDef } from 'ag-grid-community';
 
 interface Product {
     id: number;
     name: string;
     description: string;
     price: number;
+    categoryCode: string;
+    productName: string;
+    productImage: string;
+    productDescr: string;
+    productTags: string[];
+    receviedCost: number;
+    profitMargin: number;
+    totalPrice: number;
+    productID: string;
 }
 
 const Products: React.FC = () => {
     const navigate = useNavigate();
     const [productlist, setProductList] = useState<Product[]>([]);
     const [isOpenModel, setOpenModel] = useState<boolean>(false);
-    const [productData, setProductData] = useState<Product | undefined>(undefined);
+    const [productData, setProductData] = useState<any | undefined | null>(null);
     const [header, setHeader] = useState<string>('');
     const [searchInput, setSearchInput] = useState<string>('');
     const rowHeight: number = 100;
@@ -30,7 +40,7 @@ const Products: React.FC = () => {
 
     const buttonClickedHandler = (): void => {
         setHeader("Add New Product");
-        setProductData(undefined);
+        setProductData(null);
         setOpenModel((prev) => !prev);
     }
 
@@ -85,29 +95,22 @@ const Products: React.FC = () => {
     }
 
     
-   interface ColDef {
-       field?: string;
-       headerName?: string;
-       flex?: number;
-       minWidth?: number;
-       editable?: boolean;
-       colId?: string;
-       valueGetter?: (params: any) => any;
-       cellRenderer?: (params: any) => JSX.Element | null; 
-   }
+   
 
-   const [colDefs, setColDefs] = useState<ColDef[]>([
-       { field: "name", flex: 3 },
+    
+
+   const [colDefs, setColDefs] = useState<any>([
+       { field: "name", headerName: "Name",flex: 3 },
        { field: "description", headerName: "Description", flex: 3 },
        {
            headerName: "Price (Rs)",
-           valueGetter: p => p.data.price.toFixed(2),
+           valueGetter: (p:any) => p.data.price.toFixed(2),
            flex: 2
        },
        {
            headerName: "Action",
            minWidth: 150,
-           cellRenderer: function (params) {
+           cellRenderer: function (params:any) {
                return <div>
                    <Button variant="primary" onClick={() => editProduct(params)}>Edit</Button>
                    <Button variant="secondary" onClick={() => deleteProduct(params)} style={{ marginLeft: '10px' }}>Delete</Button>
@@ -135,7 +138,7 @@ const Products: React.FC = () => {
            </div>
            <div className="ag-theme-quartz" style={{ height:'100%', marginTop:'44px' }}>
                <div style={{ height:'50%' }}>
-                   <AgGridReact rowData={productlist} columnDefs={colDefs} rowHeight={rowHeight} />
+                   <AgGridReact rowData={productlist}  columnDefs={colDefs} rowHeight={rowHeight} />
                </div>
            </div>
 
