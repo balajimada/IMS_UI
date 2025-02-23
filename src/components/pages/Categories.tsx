@@ -5,6 +5,7 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import AddEditCategory from "./AddEditCategory";
+import { AllCommunityModule, ModuleRegistry,provideGlobalGridOptions  } from "ag-grid-community";
 
 interface Category {
     categoryID: number;
@@ -12,7 +13,9 @@ interface Category {
     categoryName: string;
     gst: string;
 }
-
+ModuleRegistry.registerModules([AllCommunityModule]);
+// Mark all grids as using legacy themes
+provideGlobalGridOptions({ theme: "legacy"});
 const Categories: FC = () => {
     const [categoryList, setCategoryList] = useState<Category[]>([]);
     const [isOpenModel, setOpenModel] = useState<boolean>(false);
@@ -30,12 +33,12 @@ const Categories: FC = () => {
     }
 
     function loadCategories(): void {
-        axios.post(getApiRouteUrl() + "api/Product/GetProductCategories").then(res => {
-            if (res?.data) {
-                console.log(res.data);
-                setCategoryList(res.data);
-            }
-        });
+        // axios.post(getApiRouteUrl() + "api/Product/GetProductCategories").then(res => {
+        //     if (res?.data) {
+        //         console.log(res.data);
+        //         setCategoryList(res.data);
+        //     }
+        // });
     }
 
     const editCategory = (params: any): void => {
